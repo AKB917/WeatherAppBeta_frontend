@@ -35,7 +35,6 @@ document.querySelector('#connection').addEventListener('click', function () {
 		.then(data => {
 			if (data.result) {
 				window.location.assign('index.html');
-				console.log(data.result);
 			}
 		});
 });
