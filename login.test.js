@@ -39,27 +39,27 @@ beforeEach(() => {
 	virtualPage.window.location = { assign: jest.fn() };
 });
 
-it('Sign-up process', async () => {
-	document.querySelector('#registerName').value = newUser.name;
-	document.querySelector('#registerEmail').value = newUser.email;
-	document.querySelector('#registerPassword').value = newUser.password;
-	document.querySelector('#register').click();
+it('Sign-up process', async () => { // Sign-up process
+	document.querySelector('#registerName').value = newUser.name; // Fill in the name field
+	document.querySelector('#registerEmail').value = newUser.email; // Fill in the email field
+	document.querySelector('#registerPassword').value = newUser.password; // Fill in the password field
+	document.querySelector('#register').click(); // Click the sign-up button
 
 	// Wait 100ms for registration
-	await new Promise(r => setTimeout(r, 100));
+	await new Promise(r => setTimeout(r, 100)); // Wait for the registration to be established
 
-	expect(virtualPage.window.location.assign).toHaveBeenCalled();
-	expect(virtualPage.window.location.assign.mock.lastCall[0]).toContain('index.html');
+	expect(virtualPage.window.location.assign).toHaveBeenCalled(); // Check if the page is redirected to index.html
+	expect(virtualPage.window.location.assign.mock.lastCall[0]).toContain('index.html'); // Check if the page is redirected to index.html
 });
 
-it('Sign-in process', async () => {
-	document.querySelector('#connectionEmail').value = newUser.email;
-	document.querySelector('#connectionPassword').value = newUser.password;
-	document.querySelector('#connection').click();
+it('Sign-in process', async () => { // Sign-in process
+	document.querySelector('#connectionEmail').value = newUser.email;// Fill in the email field
+	document.querySelector('#connectionPassword').value = newUser.password; // Fill in the password field
+	document.querySelector('#connection').click(); // Click the sign-in button
 
 	// Wait 100ms for connection
-	await new Promise(r => setTimeout(r, 100));
+	await new Promise(r => setTimeout(r, 100)); // Wait for the connection to be established
 
-	expect(virtualPage.window.location.assign).toHaveBeenCalled();
-	expect(virtualPage.window.location.assign.mock.lastCall[0]).toContain('index.html');
+	expect(virtualPage.window.location.assign).toHaveBeenCalled(); // Check if the page is redirected to index.html
+	expect(virtualPage.window.location.assign.mock.lastCall[0]).toContain('index.html'); // Check if the page is redirected to index.html
 });
