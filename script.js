@@ -1,4 +1,5 @@
-const URLBACKEND = window.env.URL_BACKEND;
+// const URLBACKEND = "https://weather-app-beta-backend-iys9.vercel.app";
+var URLBACKEND = "https://weatherappbeta-backend.onrender.com";
 const OWM_ICON_PATH = "https://openweathermap.org/img/wn";
 
 // Récupération du user

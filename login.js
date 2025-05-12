@@ -1,5 +1,6 @@
 if (typeof URLBACKEND === 'undefined') {
-	var URLBACKEND = window.env.URL_BACKEND;
+	// var URLBACKEND = "https://weather-app-beta-backend-iys9.vercel.app";
+	var URLBACKEND = "https://weatherappbeta-backend.onrender.com";
 }
 console.log("API URL:", URLBACKEND);
 
