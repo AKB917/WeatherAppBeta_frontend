@@ -1,42 +1,55 @@
+if (typeof URLBACKEND === 'undefined') {
+	var URLBACKEND = window.env.URL_BACKEND;
+}
+console.log("API URL:", URLBACKEND);
 
-const URLBACKEND = process.env.URL_BACK;
-// Sign-up
-document.querySelector('#register').addEventListener('click', function () {
-	const user = {
-		name: document.querySelector('#registerName').value,
-		email: document.querySelector('#registerEmail').value,
-		password: document.querySelector('#registerPassword').value,
-	}
+const registerBtn = document.querySelector('#register');
+if (registerBtn) {
+	registerBtn.addEventListener('click', function () {
+		const name = document.querySelector('#registerName')?.value;
+		const email = document.querySelector('#registerEmail')?.value;
+		const password = document.querySelector('#registerPassword')?.value;
 
-	fetch(`${URLBACKEND}/users/signup`, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(user),
-	})
-		.then(response => response.json())
-		.then(data => {
-			if (data.result) {
-				window.location.assign('index.html');
-			}
-		});
-});
+		if (!name || !email || !password) return alert("Remplir tous les champs");
 
-// Sign-in
-document.querySelector('#connection').addEventListener('click', function () {
-	const user = {
-		email: document.querySelector('#connectionEmail').value,
-		password: document.querySelector('#connectionPassword').value,
-	}
+		fetch(`${URLBACKEND}/users/signup`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ name, email, password }),
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data.result) {
+					localStorage.setItem('user', JSON.stringify(data.User)); // attention à la majuscule
+					window.location.assign('index.html');
+				} else {
+					alert(data.error);
+				}
+			});
+	});
+}
 
-	fetch(`${URLBACKEND}/users/signin`, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(user),
-	})
-		.then(response => response.json())
-		.then(data => {
-			if (data.result) {
-				window.location.assign('index.html');
-			}
-		});
-});
+const connectionBtn = document.querySelector('#connection');
+if (connectionBtn) {
+	connectionBtn.addEventListener('click', function () {
+		const email = document.querySelector('#connectionEmail')?.value;
+		const password = document.querySelector('#connectionPassword')?.value;
+
+		if (!email || !password) return alert("Remplir tous les champs");
+
+		fetch(`${URLBACKEND}/users/signin`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ email, password }),
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data.result) {
+					localStorage.setItem('user', JSON.stringify(data.user));
+					window.location.assign('index.html');
+				} else {
+					alert(data.error);
+				}
+			});
+	});
+}

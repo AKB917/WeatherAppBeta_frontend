@@ -3,6 +3,8 @@
 
 <head>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
 </head>
 
 <body>
@@ -16,15 +18,17 @@
       <button id="addCity"><img id="glass" src="images/glass.png" /></button>
     </div>
 
-    <a href="login.html" id="userButton">
-      <img id="userIcon" src="images/user.png" />
-    </a>
+    <div id="userButton">
+      <a href="login.html">
+        <img id="userIcon" src="images/user.png" />
+      </a>
+    </div>
   </div>
 
   <div id="cityList">
     <div id="currentPos"></div>
   </div>
-
+  <script src="env.js"></script>
   <script src="script.js"></script>
 </body>
 
